@@ -49,27 +49,6 @@ class NewsController extends Controller
     {
 
         //menambahkan resource
-        // $validateData = $request->validate([
-        //     'title' => 'required',
-        //     'author' => 'required',
-        //     'description' => 'required',
-        //     'content' => 'required',
-        //     'url' => 'required',
-        //     'url_image' => 'required',
-        //     'published_at' => 'required',
-        //     'category' => 'required',
-        // ]);
-        // dd(Carbon::now());
-        // $validator = Validator::make($request->all(), [
-        //     'title' => 'required',
-        //     'author' => 'required',
-        //     'description' => 'required',
-        //     'content' => 'required',
-        //     'url' => 'required',
-        //     'url_image' => 'required',
-        //     'published_at' => 'required',
-        //     'category' => 'required'
-        // ]);
         $news = News::create([
             'title' => $request->title,
             'author' => $request->author,
@@ -82,20 +61,13 @@ class NewsController extends Controller
         ]);
 
         // menambahkan pesan dan kode
-
-        // $data = [
-        //     'message' => 'Resource is Added Succesfully',
-        //     'data' => $news
-        // ];
-
-        // return response()->json($data, 201);
-        $response = [
-            'code' => 200,
-            'message' => 'OK!',
+        $data = [
+            'message' => 'Resource is Added Succesfully',
             'data' => $news
         ];
 
-        return response()->json($response, 200);
+        return response()->json($data, 201);
+
     }
 
     /**
@@ -147,7 +119,7 @@ class NewsController extends Controller
                 'content' => $request->content?? $news->content,
                 'url' => $request->url?? $news->url,
                 'url_image' => $request->url_image?? $news->url_image,
-                'published_at' => $request->published_at?? $news->publised_at,
+                'published_at' => Carbon::now(),
                 'category' => $request->category?? $news->category
             ];
 

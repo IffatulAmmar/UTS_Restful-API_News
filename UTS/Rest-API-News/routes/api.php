@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
-use App\Http\Controller\AuthContrller;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-
-
-});
-
- # get all resource news / mendapatkan semua resource
+    # get all resource news / mendapatkan semua resource
     # membuat method get
     Route::get('/news', [NewsController::class, 'index']);
 
@@ -56,6 +52,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     # membuat method untuk mendapatkan data automotive
     Route::get('/news/category/automotive', [NewsController::class, 'automotive']);
+
+});
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
